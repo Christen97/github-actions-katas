@@ -55,6 +55,7 @@ jobs:
       with:
         name: code
         path: .
-    - run: ci/build-docker.sh && ci/push-docker.sh
+    - run: chmod +x ci/build-docker.sh && ci/build-docker.sh
+    - run: chmod +x ci/push-docker.sh && ci/push-docker.sh
     - run: export GIT_COMMIT="GA-$GITHUB_SHA"
 
