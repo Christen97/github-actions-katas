@@ -1,3 +1,6 @@
+env:
+  docker_username: ${{ secrets.DOCKER_USERNAME }}
+  docker_password: ${{ secrets.DOCKER_PASSWORD }}
 name: Java CI
 on: push
 jobs:
@@ -42,3 +45,14 @@ jobs:
         with:
           name: code
           path: .
+  Docker-image:
+    needs: [Build, Test]
+    steps:
+    - name: Download
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
+        run: ci/build-docker.sh && ci/push-docker.sh
+        run: export GIT_COMMIT="GA-$GITHUB_SHA"
+
