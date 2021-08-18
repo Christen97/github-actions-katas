@@ -53,9 +53,10 @@ jobs:
         with:
           name: code
           path: .
-      - run: sh ci/build-docker.sh
-      - run: sh ci/push-docker.sh
       - run: export GIT_COMMIT="GA-$GITHUB_SHA"
+      - run: chmod +x ci/build-docker.sh && ci/build-docker.sh
+      - run: chmod +x ci/push-docker.sh && ci/push-docker.sh
+
   Component-test:
     runs-on: ubuntu-latest
     needs: [Docker-image]
