@@ -17,7 +17,7 @@ jobs:
 
   Test:
     runs-on: ubuntu-latest
-    container: gradle:6-jdk11
+    container: docker:latest
     needs: [Clone-down]
     steps:
       - name: Download
