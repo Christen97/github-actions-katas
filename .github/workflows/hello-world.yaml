@@ -49,10 +49,10 @@ jobs:
     needs: [Build, Test]
     steps:
     - name: Download
-        uses: actions/download-artifact@v2
-        with:
-          name: code
-          path: .
-        run: ci/build-docker.sh && ci/push-docker.sh
-        run: export GIT_COMMIT="GA-$GITHUB_SHA"
+      uses: actions/download-artifact@v2
+      with:
+        name: code
+        path: .
+    - run: ci/build-docker.sh && ci/push-docker.sh
+    - run: export GIT_COMMIT="GA-$GITHUB_SHA"
 
