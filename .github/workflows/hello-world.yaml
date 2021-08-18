@@ -17,7 +17,7 @@ jobs:
 
   Test:
     runs-on: ubuntu-latest
-    container: docker:latest
+    container: gradle:6-jdk11
     needs: [Clone-down]
     steps:
       - name: Download
@@ -47,6 +47,8 @@ jobs:
           path: .
   Docker-image:
     needs: [Build, Test]
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
     steps:
     - name: Download
       uses: actions/download-artifact@v2
