@@ -64,6 +64,9 @@ jobs:
     steps:
     - name: Download
       uses: actions/download-artifact@v2
+      with:
+        name: code
+        path: .
     - name: Component test
     - run: chmod +x ci/component-test.sh && sh ./ci/component-test.sh
 
