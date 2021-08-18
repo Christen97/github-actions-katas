@@ -14,14 +14,14 @@ jobs:
     steps:
       - name: test
         run: ci/unit-test-app.sh
-        needs: Clone-down
+        needs: [Clone-down, Build]
   Build:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     steps:
       - name: Upload repo
         uses: actions/upload-artifact@v2
-        needs: Clone-down
+        needs: [Clone-down]
         with:
           name: code
           path: .
